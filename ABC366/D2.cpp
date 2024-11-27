@@ -1,27 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define rep(i,n) for (int i = 0; i < (n); ++i)
+#define rep(i,n) for(int i=0; i<(n); i++)
 using ll = long long;
+using P = pair<int,int>;
 
 int main() {
-  int n, m;
-  cin >> n >> m;
-  vector<int> a(n);
-  rep(i,n) cin >> a[i];
-  int L = 0;
-  rep(i,n) L = (L+a[i])%m;
+    int n;
+    cin >> n;
+    vector<vector<vector<int>>> a(n, vector<vector<int>>(n, vector<int>(n)));
+    rep(i,n) rep(j,n) rep(k,n) cin >> a[i][j][k];
+    vector<vector<vector<int>>> s(n + 1, vector<vector<int>>(n + 2, vector<int>(n + 2, 0)));
 
-  ll ans = 0;
-  vector<int> cnt(m);
-  int s = 0;
-  rep(ri,2) {
-    rep(r,n) {
-      if (ri == 1) cnt[(s-L+m)%m]--;
-      if (ri == 1) ans += cnt[s];
-      cnt[s]++;
-      s = (s+a[r])%m;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            for (int k = 1; k <= n; k++) {
+                s[i][j][k] = a[i - 1][j - 1][k - 1]
+                           + s[i - 1][j][k]
+                           + s[i][j - 1][k]
+                           + s[i][j][k - 1]
+                           - s[i - 1][j - 1][k]
+                           - s[i - 1][j][k - 1]
+                           - s[i][j - 1][k - 1]
+                           + s[i - 1][j - 1][k - 1];
+            }
+        }
     }
-  }
-  cout << ans << endl;
-  return 0;
+    
+
+    int q;
+    cin >> q;
+
+    rep(qi, q) {
+        int lx, rx, ly, ry, lz, rz;
+        cin >> lx >> rx >> ly >> ry >> lz >> rz;
+        lx--, ly--, lz--;
+        int ans = s[rx][ry][rz]
+                - s[lx][ry][rz]
+                - s[rx][ly][rz]
+                - s[rx][ry][lz]
+                + s[lx][ly][rz]
+                + s[lx][ry][lz]
+                + s[rx][ly][lz]
+                - s[lx][ly][lz];
+
+        cout << ans << endl;
+    }
+    return 0;
 }
