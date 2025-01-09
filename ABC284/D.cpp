@@ -5,9 +5,9 @@ using ll = long long;
 using P = pair<int,int>;
 
 // エラトステネスの篩
-vector<int> sieve_of_eratosthenes(int n) {
+vector<int> sieve(int n) {
     vector<bool> is_prime(n + 1, true);
-    is_prime[0] = is_prime[1] = false;
+    is_prime[0] = is_prime[1] = false; // 0と1は素数ではない
 
     for (int i = 2; i * i <= n; i++) {
         if (is_prime[i]) {
@@ -24,25 +24,32 @@ vector<int> sieve_of_eratosthenes(int n) {
     return primes;
 }
 
-bool is_perfect_square(ll n) {
-    if (n < 0) return false;  // 負の数は平方根を持たない
-    double sqrt_n = sqrt(n);  // nの平方根を計算
-    return sqrt_n == floor(sqrt_n);  // sqrt_nが整数かどうかを確認
-}
-
 
 int main() {
     int t;
     cin >> t;
-    vector<int> primes = sieve_of_eratosthenes(100000);
+    vector<int> primes = sieve(1e7);
 
     rep(i,t){
         ll n, now = 0;
         cin >> n;
-        while(n % primes[now] != 0 || is_perfect_square(n / primes[now]) == false){
-            now++;
+        rep(a,1e5){
+            if(n % primes[a] == 0){
+                ll x = n / primes[a];
+                auto it = lower_bound(primes.begin(), primes.end(), sqrt(x));
+                if(*it == x){
+                    cout << *it << " " << primes[a] << endl;
+                    break;
+                }
+            }else if(n % ((ll)primes[a]*primes[a]) == 0){
+                ll x = n / (primes[a]*primes[a]);
+                auto it = lower_bound(primes.begin(), primes.end(), x);
+                if(*it == x){
+                    cout << primes[a] << " " << *it << endl;
+                    break;
+                }
+            }
         }
-        cout << sqrt(n / primes[now]) << ' ' << primes[now] << endl;
     }
     return 0;
 }

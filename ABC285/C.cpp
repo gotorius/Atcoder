@@ -20,7 +20,6 @@ int main() {
     ans += x*(s[n-1-i]-'A');
     x *= 26;
   }
-
   ans++;
   cout << ans << endl;
   return 0;
