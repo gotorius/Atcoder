@@ -18,12 +18,13 @@ int main() {
         wa += a[i];
         as[i + 1] = wa;
     }
-
-    s %= wa*2;
-    if(s == 0){
+;
+    if(s%wa == 0){
         cout << "Yes" << endl;
         return 0;
     }
+
+    s %= wa*2;
 
     ll wb = 0;
     rep(i, n) {
@@ -32,8 +33,8 @@ int main() {
     }
 
 
-    rep(i, n+1) {
-        ll sum = bs[i];
+    rep(i, n) {
+        ll sum = bs[i+1];
         if(sum == s){
             cout << "Yes" << endl;
             return 0;
@@ -41,6 +42,20 @@ int main() {
 
         auto it = lower_bound(as.begin(), as.end(), s - sum);
         if (it != as.end() && *it == s - sum) {
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }
+
+    rep(i, n) {
+        ll sum = as[i+1];
+        if(sum == s){
+            cout << "Yes" << endl;
+            return 0;
+        }
+
+        auto it = lower_bound(bs.begin(), bs.end(), s - sum);
+        if (it != bs.end() && *it == s - sum) {
             cout << "Yes" << endl;
             return 0;
         }
