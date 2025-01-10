@@ -27,7 +27,8 @@ int main() {
   const ll INF = 1e18;
   vector<ll> dist(n, INF);
   priority_queue<P, vector<P>, greater<P>> q;
-  dist[0] = a[0]; q.emplace(a[0],0);
+  dist[0] = a[0]; 
+  q.emplace(a[0],0);
 
   while (!q.empty()) {
     auto [d,v] = q.top(); q.pop();
