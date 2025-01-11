@@ -5,12 +5,13 @@ using ll = long long;
 using P = pair<int,int>;
 
 int main() {
-    int n, t;
+    int n;
+    double t;
     string s;
     cin >> n >> t >> s;
     vector<double> x(n);
 
-    map<ll, int> mp;
+    map<double, int> mp;
     rep(i,n){
         cin >> x[i];
         if(s[i] == '1') x[i] += t+0.1;
@@ -26,6 +27,5 @@ int main() {
         }
     }
     cout << ans << endl;
-    
     return 0;   
 }
