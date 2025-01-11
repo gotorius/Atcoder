@@ -6,6 +6,18 @@ using P = pair<int,int>;
 
 int main() {
     int n, d;
-    ci
+    cin >> n >> d;
+
+    vector<int> t(n), l(n);
+    rep(i,n) cin >> t[i] >> l[i];
+
+    rep(i,d){
+        int m = 0;
+        rep(j,n){
+            m = max(m, (t[j]*(l[j]+(i+1))));
+        }
+        cout << m << endl;
+    }
+    return 0;
    
 }
