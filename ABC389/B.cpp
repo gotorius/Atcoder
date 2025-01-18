@@ -5,5 +5,16 @@ using ll = long long;
 using P = pair<int,int>;
 
 int main() {
+    ll x;
+    cin >> x;
+
+    ll s = 1;
+    int ans = 1;
+    while(s != x){
+        ans++;
+        s *= ans;
+    }
+    cout<< ans << endl;
+    return 0;
    
 }
