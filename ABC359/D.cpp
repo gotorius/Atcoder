@@ -15,15 +15,9 @@ int main() {
     sort(a.begin(), a.end());
     ll ans = 0;
     rep(i,m){
-        auto p = lower_bound(a.begin(), a.end(), b[i]);
+        auto p = lower_bound(a.begin(), a.end(),b[i]);
         int index = p - a.begin();
-        if(*p >= b[i] && *p != -1){
-            ans += *p;
-            a[index] = -1;
-        }else{
-            ans = -1;
-            break;
-        }
+        
     } 
     cout << ans << endl;
     return 0;
