@@ -10,13 +10,20 @@ int main() {
     vector<ll> a(n);
     rep(i,n) cin >> a[i];
 
-    rep(i,n-2){
-        if(a[i+2]*a[i] != a[i+1]*a[i+1]){
+    if (a[0] == 0) {
+        cout << "No" << endl;
+        return 0;
+    }
+
+    ll ratio = a[1] / a[0];
+
+    for(int i = 1; i < n-1; ++i) {
+        if (a[i] == 0 || a[i+1] % a[i] != 0 || a[i+1] / a[i] != ratio) {
             cout << "No" << endl;
             return 0;
         }
     }
+
     cout << "Yes" << endl;
     return 0;
-   
 }
