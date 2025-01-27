@@ -24,49 +24,31 @@ vector<ll> simple_sieve(ll limit) {
     return primes;
 }
 
-vector<ll> segmented_sieve(ll n) {
-    ll limit = sqrt(n) + 1;
-    vector<ll> primes = simple_sieve(limit);
-    vector<ll> result(primes);
-
-    ll low = limit;
-    ll high = 2 * limit;
-
-    while (low < n) {
-        if (high >= n) high = n;
-        vector<bool> mark(high - low + 1, true);
-
-        for (ll i = 0; i < primes.size(); ++i) {
-            ll lowLim = max(primes[i] * primes[i], (low + primes[i] - 1) / primes[i] * primes[i]);
-
-            for (ll j = lowLim; j < high; j += primes[i]) {
-                mark[j - low] = false;
-            }
-        }
-
-        for (ll i = low; i < high; ++i) {
-            if (mark[i - low]) {
-                result.push_back(i);
-            }
-        }
-
-        low = low + limit;
-        high = high + limit;
+ll f(ll x, ll y){
+    int cnt = 0;
+    while(x % y == 0){
+        x /= y;
+        cnt++;
     }
-
-    return result;
-}
+    return cnt;    
+};
 
 int main() {
-    ll n = 1e12;
+    ll n = 1e7;
     ll k;
     cin >> k;
-    vector<ll> primes = segmented_sieve(n);
+    vector<ll> primes = simple_sieve(n);
 
-    ll ans = 0;
+    ll ans = -1;
+    ll cnt = 1;
     for (ll prime : primes) {
-        if(k % prime) ans = prime;
+        if(k % prime == 0){
+            ans = prime;
+            ll k1 = k;
+            rep(i,f(k1,prime)) cnt *= prime;
+        }
     }
-    cout << ans << endl;
+    if(cnt == k) cout << ans << endl;
+    else cout << k << endl;
     return 0;
 }
