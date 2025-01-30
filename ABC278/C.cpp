@@ -9,17 +9,17 @@ int main() {
     ll n, q;
     cin >> n >> q;
     
-    vector<vector<bool>> f(n, vector<bool>(n,false));
+    set<P> s;
     rep(i,q){
         ll t, a, b;
         cin >> t >> a >> b;
         a--; b--;
         if(t == 1){
-            f[a][b] = true;
+            s.emplace(a,b);
         }else if(t == 2){
-            f[a][b] = false;
+            s.erase({a,b});
         }else if(t == 3){
-            if(f[a][b] && f[b][a]) cout << "Yes" << endl;
+            if(s.count({a,b}) && s.count({b,a})) cout << "Yes" << endl;
             else cout << "No" << endl;
         }
     }
