@@ -53,3 +53,7 @@ vector<int> eratosthenes(int n) {
 
     return primes;
 }
+
+//bfs
+const int di[] = {-1,0,1,0};
+const int dj[] = {0,-1,0,1};
