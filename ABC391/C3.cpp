@@ -11,6 +11,7 @@ int main() {
     vector<int> a(n+1,1);
     map<int,int> mp;
     rep(i,n) mp[i+1] = i+1;
+
     int ans = 0;
     rep(i,q){
         int num;
@@ -19,15 +20,12 @@ int main() {
             int p, h;
             cin >> p >> h;
             a[mp[p]]--;
+            if(a[mp[p]] == 1) ans--;
             mp[p] = h;
-            a[mp[p]]++;
-
+            a[mp[p]]++;            
+            if(a[mp[p]] == 2) ans++;
         }else if(num == 2){
-            vector<int> s = a;
-            sort(s.begin(),s.end());
-            auto it = lower_bound(s.begin(),s.end(), 2);
-            int count = distance(it, s.end());
-            cout << count << endl;
+            cout << ans << endl;
         }
     }
    
