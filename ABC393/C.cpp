@@ -4,6 +4,27 @@ using namespace std;
 using ll = long long;
 using P = pair<int,int>;
 
-int main(void){
-
+int main() {
+    int n, m;
+    cin >> n >> m;
+    map<P, int> mp;
+    
+    int ans = 0;
+    rep(i, m) {
+        int a, b;
+        cin >> a >> b;
+        
+        if (a == b) {
+            ans++;
+            continue;
+        }
+        
+        if (mp[{a, b}] > 0 || mp[{b, a}] > 0) {
+            ans++;
+        }
+        mp[{a, b}]++;
+        mp[{b, a}]++;
+    }
+    
+    cout << ans << endl;
 }
