@@ -12,6 +12,9 @@ int main(void){
 #include <atcoder/all>
 using namespace atcoder;
 
+//modint
+using mint = modint998244353;
+
 //DSU ABC350 D問題
 
 //DP
@@ -20,8 +23,6 @@ template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; }
 const long long INF = 1LL << 60;
 long long dp[100010];
 
-//modint
-using mint = modint998244353;
 
 //DFS
 void dfs(int node, vector<vector<int>>& graph, vector<bool>& visited) {
