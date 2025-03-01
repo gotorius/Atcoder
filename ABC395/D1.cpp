@@ -8,7 +8,6 @@ using T = tuple<int,int,int>;
 int main(void){
     int n, q;
     cin >> n >> q;
-
     vector<set<T>> move(n);
     rep(i,n){
         move[i].insert(T(-1,i,0));
@@ -29,21 +28,23 @@ int main(void){
             a--,b--;
             move[a].insert(T(i,b,2));
             move[b].insert(T(i,a,2));
-        }else if(num == 3){
+        }
+        else if(num == 3){
             int a;
             cin >> a;
             a--;
-            int ans;
+            int ans = a;
             for(auto p : move[a]){
-                if(get<2>(p) == 1) ans = get<1>(p);
+                if(get<2>(p) == 1){
+                    ans = get<1>(p);
+                }
                 else if(get<2>(p) == 2){
-                    swap(move[a],move[ans]);
+                    swap(move[a], move[ans]);
                     ans = get<1>(p);
                 }
             }
-            cout << ans+1 << endl;
+            cout << ans + 1 << endl;
         }
     }
     return 0;
-
 }
