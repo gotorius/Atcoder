@@ -6,5 +6,17 @@ using namespace atcoder;
 using mint = modint998244353;
 
 int main() {
+    int n, m, d;
+    cin >> n >> m >> d;
+    vector<int> a(n), b(m);
+    rep(i,n) cin >> a[i];
+    rep(i,m) cin >> b[i];
+    sort(b.begin(), b.end());
+
+    int ans = 0;
+    rep(i,n){
+        auto p = lower_bound(b.begin(), b.end(), a[i]);
+        
+    }
 
 }
