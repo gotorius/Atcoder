@@ -16,6 +16,8 @@ using namespace atcoder;
 using mint = modint998244353;
 
 //DSU ABC350 D問題
+//ダイクストラ ABC340 D問題
+
 
 //DP
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
