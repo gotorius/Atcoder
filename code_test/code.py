@@ -5,7 +5,7 @@
 #•このようなインスタンスを2つ作成し、実行するインスタンスを変えることによって、2人の自己紹介ができるようにしてください"
 
 
-class SelfIntroduction: 
+class Introduction: 
     def __init__(self, name, age, birthplace):
         self.name = name
         self.age = age
@@ -14,11 +14,9 @@ class SelfIntroduction:
     def introduce(self):
         print(f"私は{self.name}です。年齢は{self.age}歳です。{self.birthplace}生まれです。")
 
-# インスタンスを2つ作成
-person1 = SelfIntroduction("山田太郎", 25, "東京")
-person2 = SelfIntroduction("鈴木花子", 30, "大阪")
+person1 = Introduction("山田太郎", 25, "東京")
+person2 = Introduction("鈴木花子", 30, "大阪")
 
-# 自己紹介メソッドを実行
 person1.introduce()
 person2.introduce()
 
