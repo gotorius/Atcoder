@@ -58,6 +58,7 @@ class Self{
 •	このようなインスタンスを2つ作成し、実行するインスタンスを変えることによって、2人の自己紹介ができるようにしてください"
 */
 
+
 class Food{
     public:
         string like;
@@ -160,6 +161,5 @@ int main(void){
     d.like = "バナナ";
     d.hate = "パイナップル";
     d.introduce("山田", 25, "大阪");
-    
     return 0;
 }
