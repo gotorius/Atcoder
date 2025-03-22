@@ -12,32 +12,33 @@ int main(void){
     int n;
     cin >> n;
     dsu d(n);
-    vector<vector<int>> g(n);
+    vector<set<int>> g(n);
 
     rep(i,n-1){
         int u, v;
         cin >> u >> v;
         u--; v--;
-        g[u].push_back(v);
-        g[v].push_back(u);
+        g[u].insert(v);
+        g[v].insert(u);
         d.merge(u, v);
     }
 
-    auto f = [&](vector<vector<int>> g, int n) {
-        vector<int> d(n,-1);
+    auto f = [&](vector<set<int>> g, int n){
+        vector<int> c(n, -1);
         for(int i = 0; i < n; i++){
-            if(d[i] != -1) continue;
+            if(c[i] != -1) continue;
             queue<int> q;
             q.push(i);
-            d[i] = 0;
+            c[i] = 0;
+
             while(!q.empty()){
                 int num = q.front();
                 q.pop();
                 for(int p : g[num]){
-                    if(d[p] == -1){
-                        d[p] = 1 - d[num];
+                    if(c[p] == -1){
+                        c[p] = 1 - c[num];
                         q.push(p);
-                    }else if (d[p] == d[num]){
+                    }else if(c[p] == c[num]){
                         return false;
                     }
                 }
@@ -49,6 +50,7 @@ int main(void){
     bool ok = true;
     string s;
     cin >> s;
+
     while(ok){
         if(s == "Second"){
             int u, v;
@@ -57,33 +59,36 @@ int main(void){
             else{
                 u--; v--;
                 d.merge(u, v);
-                g[u].push_back(v);
-                g[v].push_back(u);
+                g[u].insert(v);
+                g[v].insert(u);
             }
         }
+
         bool found = false;
-        for(int i = 0; i < n - 1; i++){
-            for(int j = i + 1; j < n; j++){
-                if(find(g[i].begin(), g[i].end(), j) == g[i].end()){
-                    vector<vector<int>> x = g;
-                    x[i].push_back(j);
-                    x[j].push_back(i);
-                    if(f(x, n)){
-                        cout << i+1 << ' ' << j+1 << endl;
-                        g[i].push_back(j);
-                        g[j].push_back(i);
-                        found = true;
-                        break;
-                    }
+        for(int i = 0; i < n; i++){
+            for(int j : d.groups()[0]){
+                if(i == j || g[i].count(j)) continue;
+
+                g[i].insert(j);
+                g[j].insert(i);
+
+                if(f(g, n)){
+                    cout << i + 1 << ' ' << j + 1 << endl;
+                    found = true;
+                    break;
                 }
+
+                g[i].erase(j);
+                g[j].erase(i);
             }
             if(found) break;
         }
+
         if(!found){
             cout << -1 << ' ' << -1 << endl;
             return 0;
         }
-        
+
         if(s == "First"){
             int u, v;
             cin >> u >> v;
@@ -91,8 +96,8 @@ int main(void){
             else{
                 u--; v--;
                 d.merge(u, v);
-                g[u].push_back(v);
-                g[v].push_back(u);
+                g[u].insert(v);
+                g[v].insert(u);
             }
         }
     }
