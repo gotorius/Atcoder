@@ -5,24 +5,37 @@ using ll = long long;
 using P = pair<int,int>;
 
 int main(void){
-    int n;
-    cin >> n;
-    vector<ll> a(n);
-    rep(i,n) cin >> a[i];
-    map<ll,ll> mpa;
-    map<ll,ll> mpn;
-    rep(i,n){
-        mpa[a[i]]++;
-        mpn[a[i]] = i+1;
-    }
-    ll ans = -1;
+    int n, r, c;
+    cin >> n >> r >> c;
+    string s;
+    cin >> s;
+    
+    set<P> st;
+    P now = {0,0};
+    st.insert(now);
 
-    rep(i,n){
-        if(mpa[a[i]] == 1){
-            ans = max(ans, a[i]);
+    rep(i,s.size()){
+        if(s[i] == 'N'){
+            now.first++;
+            r++;
+        }else if(s[i] == 'S'){
+            now.first--;
+            r--;
+        }else if(s[i] == 'W'){
+            now.second++;
+            c++;
+        }else{
+            now.second--;
+            c--;
+        }
+        st.insert(now);
+        if(st.count({r,c})){
+            cout << 1;
+        }else{
+            cout << 0;
         }
     }
-    if(ans == -1) cout << -1 << endl;
-    else cout << mpn[ans] << endl;
+    cout << endl;
     return 0;
+
 }
