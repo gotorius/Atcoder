@@ -5,5 +5,12 @@ using ll = long long;
 using P = pair<int,int>;
 
 int main(void){
-
+    int n;
+    cin >> n;
+    if(n >= 200 && n < 300){
+        cout << "Success" << endl;
+    }else{
+        cout << "Failure" << endl;
+    }
+    return 0;
 }
