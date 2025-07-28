@@ -8,14 +8,18 @@ int main(void){
     ll n, m;
     cin >> n >> m;
     vector<ll> d(m);
+    vector<ll> a(m), b(m);
     rep(i,m){
-        ll a, b;
-        cin >> a >> b;
-        d[i] = a - b;
+        cin >> a[i] >> b[i];
+        d[i] = a[i] - b[i];
     }
     sort(d.begin(), d.end());
     ll ans = 0;
     rep(i,m){
-        ans += n;
+        if(n < a[i])
+        ans += max(0LL, ((n-a[i])/d[i])+1);
+        n = a[i];
     }
+    cout << ans << endl;
+    return 0;
 }
