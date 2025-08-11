@@ -11,9 +11,9 @@ int main(void){
     rep(i,n) cin >> a[i];
     map<int,int> mp;
     rep(i,n){
-        b[i] = i + a[i];
+        b[i] = abs(i+1 + a[i]);
         mp[b[i]]++;
-        c[i] = i - a[i];
+        c[i] = abs(i+1 - a[i]);
     }
     int ans = 0;
     rep(i,n){
@@ -21,7 +21,7 @@ int main(void){
     }
     cout << ans/2 << endl;
 
-    rep(i,n) cout << b[i] << ' ' << c[i];
+    rep(i,n) cout << b[i] << ' ' << c[i] << ' ';
     cout << endl;
     return 0;
 }
