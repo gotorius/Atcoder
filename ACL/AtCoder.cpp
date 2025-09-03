@@ -62,3 +62,15 @@ vector<int> eratosthenes(int n) {
 //bfs
 const int di[] = {-1,0,1,0};
 const int dj[] = {0,-1,0,1};
+
+
+//数字反転
+ll f(ll n) {
+    ll rev = 0;
+    while (n > 0) {
+        ll digit = n % 10;
+        rev = rev * 10 + digit;
+        n /= 10;
+    }
+    return rev;
+}
