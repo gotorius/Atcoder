@@ -74,3 +74,8 @@ ll f(ll n) {
     }
     return rev;
 }
+
+ll chartoint(char s){
+    int ans = s -'0';
+    return ans;
+}
