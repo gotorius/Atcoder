@@ -4,6 +4,16 @@ using namespace std;
 using ll = long long;
 using P = pair<int,int>;
 
-int main(void){
+// "Ocelot", "Serval", "Lynx"
 
+int main(void){
+    string x, y;
+    cin >> x >> y;
+    map<string,int> mp;
+    mp["Ocelot"] = 1;
+    mp["Serval"] = 2;
+    mp["Lynx"] = 3;
+    if(mp[x] >= mp[y]) cout << "Yes" << endl;
+    else cout << "No" << endl;
+    return 0;
 }

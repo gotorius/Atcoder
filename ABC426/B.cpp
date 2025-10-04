@@ -5,5 +5,16 @@ using ll = long long;
 using P = pair<int,int>;
 
 int main(void){
-
+    string s;
+    cin >> s;
+    map<char,int> mp;
+    rep(i,s.size()){
+        mp[s[i]]++;
+    }
+    for(auto p : mp){
+        if(p.second == 1){
+            cout << p.first << endl;
+        }
+    }
+    return 0;
 }
