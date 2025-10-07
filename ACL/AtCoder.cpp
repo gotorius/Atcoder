@@ -80,4 +80,6 @@ ll chartoint(char s){
     return ans;
 }
 
-//check
+//ABC
+string abc = "abcdefghijklmnopqrstuvwxyz";
+string ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
